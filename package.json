@@ -15,7 +15,8 @@
     "emulators": "firebase emulators:start",
     "emulators:ui": "firebase emulators:start --only hosting,firestore,storage,auth",
     "setup": "node setup-firebase.js",
-    "install-deps": "cd Frontend && npm install"
+    "install-deps": "cd Frontend && npm install",
+    "vercel-build": "cd Frontend && npm install && npm run build"
   },
   "keywords": [
     "super-mall",
