@@ -1,0 +1,55 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Product images - readable by all, writable by admins only
+    match /product-images/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && 
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Shop images - readable by all, writable by admins only
+    match /shop-images/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && 
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Category images - readable by all, writable by admins only
+    match /category-images/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && 
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Offer images - readable by all, writable by admins only
+    match /offer-images/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && 
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // User profile images - readable by all, writable by user or admin
+    match /user-images/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && 
+        (request.auth.uid == userId || 
+         firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin');
+    }
+    
+    // Order documents - readable by customer or admin, writable by admin only
+    match /order-documents/{orderId}/{allPaths=**} {
+      allow read: if request.auth != null && 
+        (firestore.get(/databases/(default)/documents/orders/$(orderId)).data.customerId == request.auth.uid ||
+         firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin');
+      allow write: if request.auth != null && 
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Analytics exports - readable by admins only
+    match /analytics-exports/{allPaths=**} {
+      allow read, write: if request.auth != null && 
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+  }
+}

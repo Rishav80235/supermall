@@ -1,0 +1,55 @@
+{
+  "name": "super-mall-web-application",
+  "version": "1.0.0",
+  "description": "A comprehensive React-based e-commerce web application for managing shops, offers, products, and locations in a super mall environment",
+  "main": "Frontend/src/main.jsx",
+  "scripts": {
+    "dev": "cd Frontend && npm run dev",
+    "build": "cd Frontend && npm run build",
+    "preview": "cd Frontend && npm run preview",
+    "lint": "cd Frontend && npm run lint",
+    "deploy": "firebase deploy",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:firestore": "firebase deploy --only firestore:rules",
+    "deploy:storage": "firebase deploy --only storage",
+    "emulators": "firebase emulators:start",
+    "emulators:ui": "firebase emulators:start --only hosting,firestore,storage,auth",
+    "setup": "node setup-firebase.js",
+    "install-deps": "cd Frontend && npm install"
+  },
+  "keywords": [
+    "super-mall",
+    "e-commerce",
+    "firebase",
+    "react",
+    "javascript",
+    "typescript",
+    "vite",
+    "retail",
+    "shopping",
+    "products",
+    "offers",
+    "cart",
+    "checkout",
+    "analytics"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "firebase-tools": "^12.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/super-mall-web-application.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/super-mall-web-application/issues"
+  },
+  "homepage": "https://github.com/yourusername/super-mall-web-application#readme",
+  "dependencies": {
+    "firebase": "^12.2.1"
+  }
+}
